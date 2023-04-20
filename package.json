@@ -1,0 +1,50 @@
+{
+  "name": "todo-app-api",
+  "version": "1.0.0",
+  "description": "NodeJs - Fastify - Prisma",
+  "main": "server.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "cross-env NODE_ENV=production && npx nodemon src/server.ts",
+    "stop": "nodemon stop server.ts",
+    "start": "nodemon server.ts",
+    "db:migrate-prod": "npx prisma migrate dev --schema=./prisma/schema-prod.prisma",
+    "db:migrate-dev": "npx prisma migrate dev --schema=./prisma/schema-dev.prisma",
+    "db:push-prod": "npx prisma db push --schema=./prisma/schema-prod.prisma",
+    "db:push-dev": "npx prisma db push --schema=./prisma/schema-dev.prisma",
+    "db:seed": "ts-node prisma/seed.ts",
+    "db:reset-dev": "npx prisma db push --schema=./prisma/schema-dev.prisma --force-reset",
+    "test": "npm run db:reset-dev && jest --runInBand --testTimeout=10000"
+  },
+  "author": "Quentin MENDEL",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^8.2.1",
+    "@fastify/formbody": "^7.4.0",
+    "@fastify/helmet": "^10.1.0",
+    "@fastify/static": "^6.10.0",
+    "@fastify/swagger": "^8.3.1",
+    "@fastify/swagger-ui": "^1.7.0",
+    "@prisma/client": "^4.12.0",
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "fastify": "^4.14.1",
+    "fluent-json-schema": "^4.1.0",
+    "jsonwebtoken": "^9.0.0",
+    "nodemailer": "^6.9.1",
+    "nodemon": "^2.0.21",
+    "prisma": "^4.12.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/jest": "^29.5.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.15.5",
+    "cross-env": "^7.0.3",
+    "jest": "^29.5.0",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  }
+}
