@@ -12,8 +12,8 @@ const registerV = {
     body: Fjs.object()
         .prop('email', Fjs.string().required())
         .prop('username', Fjs.string().required())
-        .prop('password', Fjs.string().minLength(4).maxLength(8).required())
-        .prop('confirmPassword', Fjs.string().minLength(4).maxLength(8).required()),
+        .prop('password', Fjs.string().minLength(4).maxLength(20).required())
+        .prop('confirmPassword', Fjs.string().minLength(4).maxLength(20).required()),
 }
 
 export default {

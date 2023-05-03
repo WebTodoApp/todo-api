@@ -7,7 +7,7 @@ import response from "../utils/response";
 
 //constants
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const PASSWORD_REGEX = /^(?=.*\d).{4,30}$/;
+const PASSWORD_REGEX = /^(?=.*\d).{4,20}$/;
 
 
 // Login entity
@@ -68,12 +68,12 @@ async function registerC(req: FastifyRequest, res: FastifyReply) {
         if (!EMAIL_REGEX.test(email.trim())) {
             return res.code(400).send(response.responseERROR(response.returnType.USER.WRONG_EMAIL));
         }
-        if (!PASSWORD_REGEX.test(password.trim())) {
-            return res.code(400).send(response.responseERROR(response.returnType.USER.WRONG_PASSWORD));
-        }
-        if (password.trim() !== confirmPassword.trim()) {
-            res.code(response.returnType.HTTP_STATUS[400].statusCode).send(response.responseERROR(response.returnType.USER.DIFFERENT_PASSWORD))
-        }
+        // if (!PASSWORD_REGEX.test(password.trim())) {
+        //     return res.code(400).send(response.responseERROR(response.returnType.USER.WRONG_PASSWORD));
+        // }
+        // if (password.trim() !== confirmPassword.trim()) {
+        //     res.code(response.returnType.HTTP_STATUS[400].statusCode).send(response.responseERROR(response.returnType.USER.DIFFERENT_PASSWORD))
+        // }
 
         const user = await database.user.findUnique({ where: { email: email } })
 
